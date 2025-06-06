@@ -1,3 +1,5 @@
+//SERVER CONFIGURATIONS FOR FIREBASE
+
 import admin, { initializeApp } from "firebase-admin";
 import { getApps, ServiceAccount } from "firebase-admin/app";
 import { Firestore, getFirestore } from "firebase-admin/firestore";

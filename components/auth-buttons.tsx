@@ -65,6 +65,7 @@ export default function AuthButtons() {
 
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={async () => {
+              // BUG Logout option should redirect to homepage
               await auth.logout()
             }}>
               <FiLogOut />

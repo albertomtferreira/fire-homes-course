@@ -2,20 +2,71 @@
 
 import { useAuth } from "@/context/auth"
 import Link from "next/link"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import Image from "next/image"
+import { FaHeart, FaTools, FaUser } from "react-icons/fa"
+import { FiLogOut } from "react-icons/fi"
 
 export default function AuthButtons() {
   const auth = useAuth()
   return (
     <div>
       {!!auth?.currentUser &&
-        <>
-          <div>
-            {auth.currentUser.email}
-          </div>
-          <div onClick={() => {
-            auth.logout()
-          }} >Logout</div>
-        </>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar>
+              {!!auth.currentUser.photoURL && (
+                <Image
+                  src={auth.currentUser.photoURL}
+                  alt={`${auth.currentUser.displayName} avatar`}
+                  width={70}
+                  height={70}
+                />
+              )}
+              <AvatarFallback>
+                {(auth.currentUser.displayName || auth.currentUser.email)?.[0]}
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>
+              <div>{auth.currentUser.displayName}</div>
+              <div className="font-normal">{auth.currentUser.email}</div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {/* TODO - Implement My Account Page */}
+            <DropdownMenuItem asChild>
+              <Link href="/account">
+                <FaUser />
+                My Account
+              </Link>
+            </DropdownMenuItem>
+            {/* TODO - Implement Admin Dashboard Page */}
+            {/* TODO - Implement conditional rendering based on profile - Only Admin will see */}
+            <DropdownMenuItem asChild>
+              <Link href="/admin-dashboard">
+                <FaTools />
+                Admin Dashboard
+              </Link>
+            </DropdownMenuItem>
+            {/* TODO - Implement MMy Favorites Page */}
+            {/* TODO - Implement conditional rendering based on profile - Only normal users will see */}
+            <DropdownMenuItem asChild>
+              <Link href="/account/favorites">
+                <FaHeart />
+                My Favorites
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={async () => {
+              await auth.logout()
+            }}>
+              <FiLogOut />
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       }
       {!auth?.currentUser &&
         <div className="flex gap-2 items-center">

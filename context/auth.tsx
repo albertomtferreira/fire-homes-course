@@ -9,6 +9,7 @@ type AuthContextType = {
   logout: () => Promise<void>
   loginWithGithub: () => Promise<void>
   loginWithGoogle: () => Promise<void>
+  customClaims: ParsedToken | null
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
@@ -42,14 +43,14 @@ export const AuthProvider = ({ children }: {
     await auth.signOut();
   }
 
-  const loginWithGithub = async () => {
-    const githubProvider = new GithubAuthProvider();
-    await signInWithPopup(auth, githubProvider)
-  }
-
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider)
+  }
+
+  const loginWithGithub = async () => {
+    const githubProvider = new GithubAuthProvider();
+    await signInWithPopup(auth, githubProvider)
   }
 
   return (
@@ -57,7 +58,8 @@ export const AuthProvider = ({ children }: {
       currentUser,
       logout,
       loginWithGithub,
-      loginWithGoogle
+      loginWithGoogle,
+      customClaims,
     }}>
       {children}
     </AuthContext.Provider>

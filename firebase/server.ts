@@ -23,7 +23,7 @@ let firestore: Firestore;
 let auth: Auth;
 const currentApps = getApps()
 
-if (!currentApps) {
+if (!currentApps.length) {
   const app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as ServiceAccount)
   });

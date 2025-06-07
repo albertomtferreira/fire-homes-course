@@ -43,21 +43,26 @@ export default function AuthButtons() {
               </Link>
             </DropdownMenuItem>
             {/* TODO - Implement Admin Dashboard Page */}
-            {/* TODO - Implement conditional rendering based on profile - Only Admin will see */}
-            <DropdownMenuItem asChild>
-              <Link href="/admin-dashboard">
-                <FaTools />
-                Admin Dashboard
-              </Link>
-            </DropdownMenuItem>
-            {/* TODO - Implement MMy Favorites Page */}
-            {/* TODO - Implement conditional rendering based on profile - Only normal users will see */}
-            <DropdownMenuItem asChild>
-              <Link href="/account/favorites">
-                <FaHeart />
-                My Favorites
-              </Link>
-            </DropdownMenuItem>
+            {!!auth.customClaims?.admin && (
+              <DropdownMenuItem asChild>
+                <Link href="/admin-dashboard">
+                  <FaTools />
+                  Admin Dashboard
+                </Link>
+              </DropdownMenuItem>
+            )}
+
+            {/* TODO - Implement My Favorites Page */}
+            {!auth.customClaims?.admin && (
+              <DropdownMenuItem asChild>
+                <Link href="/account/favorites">
+                  <FaHeart />
+                  My Favorites
+                </Link>
+              </DropdownMenuItem>
+            )
+            }
+
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={async () => {
               await auth.logout()

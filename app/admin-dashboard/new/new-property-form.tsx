@@ -5,10 +5,14 @@ import { propertyDataSchema } from "@/validation/propertySchema"
 import { PlusCircleIcon } from "lucide-react"
 import { z } from "zod"
 import { saveNewProperty } from "./action"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 
 export default function NewPropertyForm() {
   const auth = useAuth()
+  const router = useRouter()
+
   const handleSubmit = async (data: z.infer<typeof propertyDataSchema>) => {
     const token = await auth.currentUser?.getIdToken()
 
@@ -17,7 +21,23 @@ export default function NewPropertyForm() {
     }
 
     const response = await saveNewProperty({ ...data, token })
-    console.log({ response })
+    // TOAST MESSAGE
+    if (!!response.error) {
+      toast.error(
+        "Error!",
+        {
+          description: response.error
+        })
+      return
+    }
+
+    toast.success(
+      "Success!",
+      {
+        description: "Property Created"
+      })
+
+    router.push("/admin-dashboard")
   }
   return (
     <div>

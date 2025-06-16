@@ -1,9 +1,8 @@
+// ACTION THAT SAVES PROPERTY DATA TO FIREBASE AND RETURNS PROPERTY ID
 "use server"
 
 import { auth, firestore } from "@/firebase/server";
 import { propertyDataSchema } from "@/validation/propertySchema";
-import { error } from "console";
-import { messaging } from "firebase-admin";
 
 export const saveNewProperty = async (
   data: {

@@ -15,7 +15,7 @@ export const saveNewProperty = async (
     price: number;
     bedrooms: number;
     bathrooms: number;
-    status: PropertyStatus[];
+    status: PropertyStatus;
     token: string;
   }
 ) => {

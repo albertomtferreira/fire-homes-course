@@ -5,7 +5,7 @@ import { auth, firestore } from "@/firebase/server";
 import { PropertyStatus } from "@/types/propertyStatus";
 import { propertyDataSchema } from "@/validation/propertySchema";
 
-export const saveNewProperty = async (
+export const createProperty = async (
   data: {
     address1: string;
     address2?: string;
@@ -16,18 +16,17 @@ export const saveNewProperty = async (
     bedrooms: number;
     bathrooms: number;
     status: PropertyStatus;
-    token: string;
-  }
+  }, authToken: string
 ) => {
-  const { token, ...propertyData } = data
-  const verifiedToken = await auth.verifyIdToken(token);
+
+  const verifiedToken = await auth.verifyIdToken(authToken);
   if (!verifiedToken.admin) {
     return {
       error: true,
       message: "Unauthorized"
     }
   }
-  const validation = propertyDataSchema.safeParse(propertyData)
+  const validation = propertyDataSchema.safeParse(data)
 
   if (!validation.success) {
     return {
@@ -37,7 +36,7 @@ export const saveNewProperty = async (
   }
 
   const property = await firestore.collection("properties").add({
-    ...propertyData,
+    ...data,
     created: new Date(),
     updated: new Date()
   })

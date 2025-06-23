@@ -3,8 +3,9 @@ import { getProperties } from "@/data/properties"
 
 
 export default async function PropertiesTable() {
-  const { data } = await getProperties()
-  console.log({ data })
+  const { data, totalPages } = await getProperties()
+  // console.log({ data })
+  // console.log({ totalPages })
   return (
     <>
       {!data &&

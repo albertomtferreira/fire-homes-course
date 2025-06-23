@@ -2,6 +2,7 @@
 "use server"
 
 import { auth, firestore } from "@/firebase/server";
+import { PropertyStatus } from "@/types/propertyStatus";
 import { propertyDataSchema } from "@/validation/propertySchema";
 
 export const saveNewProperty = async (
@@ -14,7 +15,7 @@ export const saveNewProperty = async (
     price: number;
     bedrooms: number;
     bathrooms: number;
-    status: "for-sale" | "draft" | "withdrawn" | "sold";
+    status: PropertyStatus[];
     token: string;
   }
 ) => {

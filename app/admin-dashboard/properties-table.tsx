@@ -1,9 +1,16 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { getProperties } from "@/data/properties"
+import Link from "next/link"
 
 
-export default async function PropertiesTable() {
-  const { data, totalPages } = await getProperties()
+export default async function PropertiesTable({ page = 1 }: { page?: number }) {
+  const { data, totalPages } = await getProperties({
+    pagination: {
+      page,
+      pageSize: 2
+    }
+  })
   // console.log({ data })
   // console.log({ totalPages })
   return (
@@ -39,6 +46,19 @@ export default async function PropertiesTable() {
               )
             })}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={4} className="text-center">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <Button key={i} asChild variant="outline" className="mx-1">
+                    <Link href={`/admin-dashboard?page=${i + 1}`}>
+                      {i + 1}
+                    </Link>
+                  </Button>
+                ))}
+              </TableCell>
+            </TableRow>
+          </TableFooter>
         </Table>
       }
     </>

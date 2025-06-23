@@ -7,9 +7,11 @@ import { Avatar, AvatarFallback } from "./ui/avatar"
 import Image from "next/image"
 import { FaHeart, FaTools, FaUser } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi"
+import { useRouter } from "next/navigation"
 
 export default function AuthButtons() {
   const auth = useAuth()
+  const router = useRouter()
   return (
     <div>
       {!!auth?.currentUser &&
@@ -65,8 +67,8 @@ export default function AuthButtons() {
 
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={async () => {
-              // BUG Logout option should redirect to homepage
               await auth.logout()
+              router.refresh()
             }}>
               <FiLogOut />
               Logout

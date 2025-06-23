@@ -4,13 +4,21 @@ import { Button } from "./ui/button"
 
 
 import { FaGithub } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function ContinueWithGithubButton() {
   const auth = useAuth()
+  const router = useRouter()
   return (
-    <Button onClick={() => {
-      auth?.loginWithGithub();
-    }}
+    <Button
+      variant="outline"
+      onClick={async () => {
+        try {
+          await auth?.loginWithGithub();
+          // BUG Router refresh not working
+          router.refresh();
+        } catch (e) { }
+      }}
       className="w-full"
     >
 

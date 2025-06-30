@@ -16,11 +16,13 @@ export type imageUpload = {
 type Props = {
   images?: imageUpload[];
   onImagesChange: (images: imageUpload[]) => void;
+  urlFormatter?: (image: imageUpload) => string
 }
 
 export default function MultiImageUploader({
   images = [],
-  onImagesChange
+  onImagesChange,
+  urlFormatter
 }: Props) {
   const uploadInputRef = useRef<HTMLInputElement | null>(null)
   console.log({ images })
@@ -79,7 +81,11 @@ export default function MultiImageUploader({
                       {/* Property Images Card */}
                       <div className="bg-gray-200 rounded-lg gap-4 flex items-center overflow-hidden">
                         <div className="size-16 relative" >
-                          <Image src={image.url} alt={image.id} fill className="object-cover" />
+                          <Image
+                            src={urlFormatter ? urlFormatter(image) : image.url}
+                            alt={image.id}
+                            fill className="object-cover"
+                          />
                         </div>
                         <div className="flex-grow ">
                           <p className="text-sm font-medium">

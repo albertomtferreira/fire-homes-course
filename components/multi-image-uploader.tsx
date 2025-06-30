@@ -2,6 +2,10 @@
 
 import { useRef } from "react";
 import { Button } from "./ui/button";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd"
+import Image from "next/image";
+import { Badge } from "./ui/badge";
+import { MoveIcon, XIcon } from "lucide-react";
 
 export type imageUpload = {
   id: string;
@@ -42,7 +46,48 @@ export default function MultiImageUploader({
         multiple accept="image/*"
         onChange={handleInputChange}
       />
-      <Button type="button" onClick={() => uploadInputRef?.current?.click()}>Upload Images</Button>
+      <Button className="w-full" variant="outline" type="button" onClick={() => uploadInputRef?.current?.click()}>Upload Images</Button>
+      <DragDropContext onDragEnd={() => { }}>
+        <Droppable droppableId="property-images" direction="vertical">
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {images.map((image, index) => (
+                <Draggable key={image.id} draggableId={image.id} index={index} >
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                      className="relative p-2">
+                      {/* Property Images Card */}
+                      <div className="bg-gray-200 rounded-lg gap-4 flex items-center overflow-hidden">
+                        <div className="size-16 relative" >
+                          <Image src={image.url} alt={image.id} fill className="object-cover" />
+                        </div>
+                        <div className="flex-grow ">
+                          <p className="text-sm font-medium">
+                            Image {index + 1}
+                          </p>
+                          {index === 0 &&
+                            <Badge variant="success"> Featured Image</Badge>}
+                        </div>
+                        <div className="flex items-center p-2">
+                          <button className="text-red-400 p-2">
+                            <XIcon />
+                          </button>
+                          <div className="text-gray-600">
+                            <MoveIcon />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   )
 }

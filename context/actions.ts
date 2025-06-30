@@ -38,6 +38,6 @@ export const setToken = async ({
     })
   }
   catch (e) {
-    console.log(e)
+    // console.log(e)
   }
 }

@@ -11,18 +11,19 @@ export async function middleware(request: NextRequest) {
   const cookieStore = await cookies()
 
   const token = cookieStore.get("firebaseAuthToken")?.value
-  console.log(
-    ["MIDDLEWARE", request.url],
-    ["TOKEN", token]
-  )
+
+  // console.log(
+  //   ["MIDDLEWARE", request.url],
+  //   ["TOKEN", token]
+  // )
 
   if (!token && request.nextUrl.pathname.startsWith("/login")) {
-    console.log("MIDDLEWARE - LOGIN !TOKEN", request.url)
+    // console.log("MIDDLEWARE - LOGIN !TOKEN", request.url)
     return NextResponse.next()
   }
 
   if (token && request.nextUrl.pathname.startsWith("/login")) {
-    console.log("MIDDLEWARE - LOGIN TOKEN", request.url)
+    // console.log("MIDDLEWARE - LOGIN TOKEN", request.url)
     return NextResponse.redirect(new URL("/", request.url))
   }
 

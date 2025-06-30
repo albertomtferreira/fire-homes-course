@@ -101,6 +101,7 @@ export default function MultiImageUploader({
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>

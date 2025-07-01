@@ -4,11 +4,12 @@ import { useAuth } from "@/context/auth"
 import { propertySchema } from "@/validation/propertySchema"
 import { PlusCircleIcon } from "lucide-react"
 import { z } from "zod"
-import { createProperty, savePropertyImages } from "./action"
+import { createProperty } from "./action"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { ref, uploadBytesResumable, UploadTask } from "firebase/storage"
 import { storage } from "@/firebase/client"
+import { savePropertyImages } from "../actions"
 
 
 export default function NewPropertyForm() {

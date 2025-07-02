@@ -13,3 +13,21 @@ export type Property = {
   status: PropertyStatus;
   images?: string[]
 }
+
+export type PropertyDetailsProps = {
+  property: {
+    status: PropertyStatus;
+    price: number;
+    bedrooms: number;
+    bathrooms: number;
+    address1?: string;
+    address2?: string;
+    city?: string;
+    postcode?: string;
+  };
+  addressLines: string[];
+}
+
+export type CarouselAutoplayProps = {
+  images?: string[]
+}

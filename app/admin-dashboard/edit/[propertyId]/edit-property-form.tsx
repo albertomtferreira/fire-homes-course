@@ -11,7 +11,7 @@ import { z } from "zod"
 import { updateProperty } from "../actions"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { error } from "console"
+
 import { deleteObject, ref, uploadBytesResumable, UploadTask } from "firebase/storage"
 import { savePropertyImages } from "../../actions"
 

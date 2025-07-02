@@ -40,7 +40,7 @@ export default async function EditProperty({ params }: { params: Promise<any> })
             city={property.city}
             postcode={property.postcode}
             bathrooms={property.bathrooms}
-            bedrooms={property.bathrooms}
+            bedrooms={property.bedrooms}
             price={property.price}
             description={property.description}
             status={property.status}

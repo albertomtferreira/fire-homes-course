@@ -68,6 +68,8 @@ export default async function PropertySearch({
               .filter((addressLine) => !!addressLine)
               .join(", ");
             return (
+              // FIXME
+              // Overflow hidden not responding as expected
               <Card key={property.id} className="overflow-hidden">
                 <CardContent className="px-0 pb-0">
                   <div className="h-40 relative bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
@@ -109,7 +111,40 @@ export default async function PropertySearch({
           })
         }
       </div>
+      <div className="flex gap-2 items-center justify-center py-10">
+        {/* TODO */}
+        {/* Pagination can be created as a helper function */}
+        {Array.from({ length: totalPages }).map((_, i) => {
+          const newSearchParams = new URLSearchParams();
 
+          if (searchParamsValues?.minPrice) {
+            newSearchParams.set("minPrice", searchParamsValues.minPrice);
+          }
+
+          if (searchParamsValues?.maxPrice) {
+            newSearchParams.set("maxPrice", searchParamsValues.maxPrice);
+          }
+
+          if (searchParamsValues?.minBedrooms) {
+            newSearchParams.set("minBedrooms", searchParamsValues.minBedrooms);
+          }
+
+          newSearchParams.set("page", `${i + 1}`);
+
+          return (
+            <Button
+              asChild={page !== i + 1}
+              disabled={page === i + 1}
+              variant="outline"
+              key={i}
+            >
+              <Link href={`/property-search?${newSearchParams.toString()}`}>
+                {i + 1}
+              </Link>
+            </Button>
+          );
+        })}
+      </div>
     </div>
   )
 }

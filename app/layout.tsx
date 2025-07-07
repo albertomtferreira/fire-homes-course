@@ -37,7 +37,7 @@ export default function RootLayout({
             </Link>
             <ul className="flex items-center justify-between gap-6">
               <li>
-                <Link href="/" className="uppercase tracking-widest hover:underline">Property Search</Link>
+                <Link href="/property-search" className="uppercase tracking-widest hover:underline">Property Search</Link>
               </li>
               <li>
                 <AuthButtons />

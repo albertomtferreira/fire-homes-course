@@ -42,7 +42,7 @@ export default async function PropertySearch({
       <Card>
         <CardHeader>
           <CardTitle>
-            Filterss
+            Filters
           </CardTitle>
         </CardHeader>
         <CardContent>

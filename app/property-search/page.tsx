@@ -69,8 +69,7 @@ export default async function PropertySearch({
               .filter((addressLine) => !!addressLine)
               .join(", ");
             return (
-              // TODO
-              // create carousel for the images
+              // TODO - create carousel for the images
               <PropertyCard key={property.id} className="h-full flex flex-col">
                 <PropertyCardContent className="flex flex-col h-full">
                   <PropertyCardImage className="h-40 bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
@@ -122,8 +121,7 @@ export default async function PropertySearch({
         }
       </div>
       <div className="flex gap-2 items-center justify-center py-10">
-        {/* TODO */}
-        {/* Pagination can be created as a helper function */}
+        {/* TODO - Pagination can be created as a helper function*/}
         {Array.from({ length: totalPages }).map((_, i) => {
           const newSearchParams = new URLSearchParams();
 

@@ -51,8 +51,7 @@ export default function MultiImageUploader({
 
   const handleDelete = (id: string) => {
     const updatedImages = images.filter(image => image.id !== id)
-    // TODO
-    // Add a validation box to prevent mistaken deletion of image
+    // TODO - Add a validation box to prevent mistaken deletion of image
     onImagesChange(updatedImages)
   }
 

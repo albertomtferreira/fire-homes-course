@@ -141,9 +141,8 @@ export default function PropertyForm({
               </FormItem>
             )} />
             {/* DESCRIPTION */}
-            {/* TODO */}
-            {/* Create a explanation of markdown for the description */}
-            {/* explore the option of render the markdown straight into the descriptio box as the user types */}
+            {/* TODO - Create a explanation of markdown for the description */}
+            {/* explore the option of render the markdown straight into the description box as the user types */}
             <FormField control={form.control} name="description" render={({ field }) => (
               <FormItem>
                 <FormLabel>Description</FormLabel>

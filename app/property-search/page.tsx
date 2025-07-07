@@ -8,7 +8,7 @@ export default function PropertySearch() {
       <Card>
         <CardHeader>
           <CardTitle>
-            Filters
+            Filterss
           </CardTitle>
         </CardHeader>
         <CardContent>

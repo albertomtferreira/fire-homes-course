@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: {
 
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider()
-    signInWithPopup(auth, provider)
+    await signInWithPopup(auth, provider)
   }
 
   const loginWithGithub = async () => {

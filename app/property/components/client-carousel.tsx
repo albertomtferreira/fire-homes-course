@@ -11,6 +11,7 @@ import {
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
 import { useEffect, useState } from "react"
+import imageUrlFormatter from "@/lib/imageUrlFormatter"
 
 interface ClientCarouselProps {
   images: string[]
@@ -52,7 +53,7 @@ export default function ClientCarousel({ images }: ClientCarouselProps) {
               <div className="relative h-[60vh] min-h-80">
                 <Image
                   alt={`Image ${index + 1}`}
-                  src={`https://firebasestorage.googleapis.com/v0/b/fire-homes-course-7a4af.firebasestorage.app/o/${encodeURIComponent(image)}?alt=media`}
+                  src={imageUrlFormatter(image)}
                   fill
                   className="object-cover"
                 />

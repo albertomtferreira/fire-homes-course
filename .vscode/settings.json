@@ -2,5 +2,7 @@
   "cSpell.words": [
     "HDRHE",
     "JHRQTZ"
-  ]
+  ],
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true
 }

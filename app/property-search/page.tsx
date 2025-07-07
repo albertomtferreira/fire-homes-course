@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { PropertyCard, PropertyCardContent, PropertyCardBody, PropertyCardImage } from "@/components/ui/property-card"
 import FiltersForm from "./components/filters-form"
 import { Suspense } from "react"
 import { getProperties } from "@/data/properties";
@@ -68,11 +69,11 @@ export default async function PropertySearch({
               .filter((addressLine) => !!addressLine)
               .join(", ");
             return (
-              // FIXME
-              // Overflow hidden not responding as expected
-              <Card key={property.id} className="overflow-hidden">
-                <CardContent className="px-0 pb-0">
-                  <div className="h-40 relative bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
+              // TODO
+              // create carousel for the images
+              <PropertyCard key={property.id} className="h-full flex flex-col">
+                <PropertyCardContent className="flex flex-col h-full">
+                  <PropertyCardImage className="h-40 bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
                     {!!property.images?.[0] && (
                       <Image
                         fill
@@ -87,26 +88,35 @@ export default async function PropertySearch({
                         <small>No Image</small>
                       </>
                     )}
-                  </div>
-                  <div className="flex flex-col gap-5 p-5">
-                    <p>{addressLines}</p>
+                  </PropertyCardImage>
+
+                  <PropertyCardBody className="flex flex-col gap-5 flex-grow">
+                    {/* Address with 2-line limit */}
+                    <p className="line-clamp-2 text-sm text-gray-600 leading-relaxed h-12 flex items-start font-semibold" title={addressLines}>
+                      {addressLines}
+                    </p>
+
                     <div className="flex gap-5">
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 items-center font-semibold">
                         <BedIcon /> {property.bedrooms}
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 items-center font-semibold">
                         <BathIcon /> {property.bathrooms}
                       </div>
                     </div>
-                    <p className="text-2xl">
+                    <p className="text-2xl font-bold">
                       £{numeral(property.price).format("0,0")}
                     </p>
+
+                    {/* This div will push the button to the bottom */}
+                    <div className="flex-grow"></div>
+
                     <Button asChild>
                       <Link href={`/property/${property.id}`}>View Property</Link>
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  </PropertyCardBody>
+                </PropertyCardContent>
+              </PropertyCard>
             )
           })
         }

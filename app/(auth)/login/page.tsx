@@ -1,21 +1,31 @@
-import ContinueWithGithubButton from "@/components/continue-with-github-button";
-import ContinueWithGoogleButton from "@/components/continue-with-google-button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import LoginForm from "./components/login-form";
+import Link from "next/link";
 
 //LOGIN PAGE
 export default function Login() {
   return (
     <Card className="color-box bg-card">
       <CardHeader>
-        <CardTitle className="text-3xl font-bold">
-          Login
-        </CardTitle>
+        <CardTitle className="text-3xl font-bold">Login</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-2">
-        <ContinueWithGoogleButton />
-        <ContinueWithGithubButton />
+      <CardContent className="space-y-4">
+        <LoginForm />
       </CardContent>
+      <CardFooter>
+        <div className="text-sm">
+          Don&apos;t have an account?
+          <Link href="/register" className="pl-2 underline font-semibold">
+            Register Here!
+          </Link>
+        </div>
+      </CardFooter>
     </Card>
-  )
+  );
 }

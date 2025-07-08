@@ -1,40 +1,116 @@
-"use client"
+"use client";
 
+import ContinueWithGithubButton from "@/components/continue-with-github-button";
+import ContinueWithGoogleButton from "@/components/continue-with-google-button";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { registerUserSchema } from "@/validation/registerUser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod"
-
-const formSchema = z.object({
-  email: z.string().email(),
-  name: z.string().min(2,"Name must be at least 2 characters long"),
-  password: z.string().refine((value) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-return regex.test(value);
-},{
-    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-}),
-passwordConfirm: z.string()
-    }).superRefine(({ passwordConfirm, password }, ctx) => {
-        if (passwordConfirm !== password) {
-          ctx.addIssue({
-            code: "custom",
-            message: "Passwords do not match",
-            path: ["passwordConfirm"],
-          });
-        }
-    })
+import { z } from "zod";
 
 export default function RegisterForm() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues:{
-            email:"",
-            password:"",
-            passwordConfirm:"",
-            name:""
-        }
-    })
+
+  const form = useForm<z.infer<typeof registerUserSchema>>({
+    resolver: zodResolver(registerUserSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      name: "",
+    },
+  });
+
+  const handleSubmit = async (data: z.infer<typeof registerUserSchema>) => {
+    
+  };
+
   return (
-    <div>Register Form</div>
-  )
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="flex flex-col gap-4"
+      >
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Your Name</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Your Name" />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Your Email" />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Password" type="password" />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Confirm Password</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Confirm Password"
+                    type="password"
+                  />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            );
+          }}
+        />
+        <Button type="submit">Register</Button>
+        <div className="text-center mb-4">or</div>
+      </form>
+      <div className="flex flex-col gap-4">
+        <ContinueWithGoogleButton />
+        <ContinueWithGithubButton />
+      </div>
+
+    </Form>
+  );
 }

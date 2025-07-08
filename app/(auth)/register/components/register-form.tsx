@@ -37,88 +37,92 @@ export default function RegisterForm() {
 
     if (!!response?.error) {
       toast.error("Error!", {
-        description: "Error while saving! No or invalid Token.",
+        description: response.message,
       });
       return;
-    } else {
-      toast.success("Success!", {
-        description: "User created with success!",
-      });
     }
+
+    toast.success("Success!", {
+      description: "Your account was created successfully!",
+    });
+
     router.push("/login");
   };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex flex-col gap-4"
-      >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Your Name</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Your Name" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Your Email" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Password" type="password" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
-        />
-        <FormField
-          control={form.control}
-          name="passwordConfirm"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Confirm Password</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Confirm Password"
-                    type="password"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
-        />
-        <Button type="submit">Register</Button>
+      <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <fieldset
+          disabled={form.formState.isSubmitting}
+          className="flex flex-col gap-4"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Your Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Your Name" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Your Email" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Password" type="password" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="passwordConfirm"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Confirm Password"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <Button type="submit">Register</Button>
+        </fieldset>
+
         <div className="text-center mb-4">or</div>
       </form>
       <div className="flex flex-col gap-4">

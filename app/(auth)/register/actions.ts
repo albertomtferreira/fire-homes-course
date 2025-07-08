@@ -23,10 +23,11 @@ export const registerUser = async (data: {
       email: data.email,
       password: data.password,
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.log({error})
     return {
       error: true,
-      message: "Could not register user",
+      message: error.message ?? `"Something went wrong during register "${error.code}`
     };
   }
 };

@@ -17,12 +17,12 @@ export async function middleware(request: NextRequest) {
   //   ["TOKEN", token]
   // )
 
-  if (!token && request.nextUrl.pathname.startsWith("/login")) {
+  if (!token && (request.nextUrl.pathname.startsWith("/login")||request.nextUrl.pathname.startsWith("/register"))) {
     // console.log("MIDDLEWARE - LOGIN !TOKEN", request.url)
     return NextResponse.next()
   }
 
-  if (token && request.nextUrl.pathname.startsWith("/login")) {
+  if (token && (request.nextUrl.pathname.startsWith("/login")||request.nextUrl.pathname.startsWith("/register"))) {
     // console.log("MIDDLEWARE - LOGIN TOKEN", request.url)
     return NextResponse.redirect(new URL("/", request.url))
   }
@@ -41,5 +41,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin-dashboard", "/admin-dashboard/:path*", "/login"],
+  matcher: ["/admin-dashboard", "/admin-dashboard/:path*", "/login", "/register"],
 }

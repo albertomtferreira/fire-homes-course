@@ -16,9 +16,12 @@ import { registerUserSchema } from "@/validation/registerUser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { registerUser } from "../actions";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof registerUserSchema>>({
     resolver: zodResolver(registerUserSchema),
     defaultValues: {
@@ -30,7 +33,19 @@ export default function RegisterForm() {
   });
 
   const handleSubmit = async (data: z.infer<typeof registerUserSchema>) => {
-    
+    const response = await registerUser(data);
+
+    if (!!response?.error) {
+      toast.error("Error!", {
+        description: "Error while saving! No or invalid Token.",
+      });
+      return;
+    } else {
+      toast.success("Success!", {
+        description: "User created with success!",
+      });
+    }
+    router.push("/login");
   };
 
   return (
@@ -49,7 +64,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input {...field} placeholder="Your Name" />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -64,7 +79,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input {...field} placeholder="Your Email" />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -79,7 +94,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input {...field} placeholder="Password" type="password" />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -98,7 +113,7 @@ export default function RegisterForm() {
                     type="password"
                   />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -110,7 +125,6 @@ export default function RegisterForm() {
         <ContinueWithGoogleButton />
         <ContinueWithGithubButton />
       </div>
-
     </Form>
   );
 }

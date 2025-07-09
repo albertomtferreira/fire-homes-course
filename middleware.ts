@@ -1,45 +1,68 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { decodeJwt } from "jose"
+import { decodeJwt } from "jose";
 
 export async function middleware(request: NextRequest) {
-
   if (request.method === "POST") {
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
-  const cookieStore = await cookies()
+  const cookieStore = await cookies();
 
-  const token = cookieStore.get("firebaseAuthToken")?.value
+  const token = cookieStore.get("firebaseAuthToken")?.value;
 
   // console.log(
   //   ["MIDDLEWARE", request.url],
   //   ["TOKEN", token]
   // )
 
-  if (!token && (request.nextUrl.pathname.startsWith("/login")||request.nextUrl.pathname.startsWith("/register"))) {
+  if (
+    !token &&
+    (request.nextUrl.pathname.startsWith("/login") ||
+      request.nextUrl.pathname.startsWith("/register"))
+  ) {
     // console.log("MIDDLEWARE - LOGIN !TOKEN", request.url)
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
-  if (token && (request.nextUrl.pathname.startsWith("/login")||request.nextUrl.pathname.startsWith("/register"))) {
+  if (
+    token &&
+    (request.nextUrl.pathname.startsWith("/login") ||
+      request.nextUrl.pathname.startsWith("/register"))
+  ) {
     // console.log("MIDDLEWARE - LOGIN TOKEN", request.url)
-    return NextResponse.redirect(new URL("/", request.url))
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   if (!token) {
-    return NextResponse.redirect(new URL("/", request.url))
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
-  const decodedToken = decodeJwt(token)
+  const decodedToken = decodeJwt(token);
+
+  if (decodedToken.exp && (decodedToken.exp - 300) * 1000 < Date.now()) {
+    return NextResponse.redirect(
+      new URL(
+        `/api/refresh-token?redirect=${encodeURIComponent(
+          request.nextUrl.pathname
+        )}`,
+        request.url
+      )
+    );
+  }
 
   if (!decodedToken.admin) {
-    return NextResponse.redirect(new URL("/", request.url))
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin-dashboard", "/admin-dashboard/:path*", "/login", "/register"],
-}
+  matcher: [
+    "/admin-dashboard",
+    "/admin-dashboard/:path*",
+    "/login",
+    "/register",
+  ],
+};

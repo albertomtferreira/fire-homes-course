@@ -25,4 +25,16 @@ describe('getTotalPages', () => {
     const pages = await getTotalPages(mockQuery, 5)
     expect(pages).toBe(0)
   })
+
+  it('rounds up when there is a partial page', async () => {
+    const mockSnapshot = { data: () => ({ count: 7 }) }
+    const mockQuery = {
+      count: vi.fn().mockReturnValue({
+        get: vi.fn().mockResolvedValue(mockSnapshot)
+      })
+    } as any
+
+    const pages = await getTotalPages(mockQuery, 5)
+    expect(pages).toBe(2)
+  })
 })

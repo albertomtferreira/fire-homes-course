@@ -9,6 +9,7 @@ import { BathIcon, BedIcon, HomeIcon } from "lucide-react";
 import numeral from "numeral";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ToggleFavouriteButton from "./components/toggle-favourite-button";
 
 export default async function PropertySearch({
   searchParams
@@ -73,6 +74,7 @@ export default async function PropertySearch({
               <PropertyCard key={property.id} className="h-full flex flex-col">
                 <PropertyCardContent className="flex flex-col h-full">
                   <PropertyCardImage className="h-40 bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
+                    <ToggleFavouriteButton />
                     {!!property.images?.[0] && (
                       <Image
                         fill

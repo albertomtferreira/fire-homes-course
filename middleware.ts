@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { decodeJwt } from "jose";
+import { toast } from "sonner";
 
 export async function middleware(request: NextRequest) {
 
@@ -51,11 +52,11 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!decodedToken.admin && pathname.startsWith("/admin-dashboard")) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/?error=admin_required", request.url));
   }
 
   if (decodedToken.admin && pathname.startsWith("/account/my-favourites")) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/?error=access_denied", request.url));
   }
 
   return NextResponse.next();

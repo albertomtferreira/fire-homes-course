@@ -1,4 +1,8 @@
 import ErrorHandlerToast from "@/components/errorHandlerToast";
+import { Button } from "@/components/ui/button";
+import { SearchIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -6,14 +10,20 @@ export default function Home() {
   return (
     <>
       <ErrorHandlerToast />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="color-box bg-primary">Primary</div>
-        <div className="color-box bg-secondary">Secondary</div>
-        <div className="color-box bg-muted">Muted</div>
-        <div className="color-box bg-accent">Accent</div>
-        <div className="color-box bg-destructive">Destructive</div>
-        <div className="color-box bg-card">Card</div>
-      </div>
+      <main className="min-h-screen -mt-24 relative p-24 flex items-center justify-center">
+        <Image fill className="object-cover" src="/hero.webp" alt="" />
+        <div className="absolute top-0 left-0 size-full bg-black/50 backdrop-blur-sm" />
+        <div className="flex flex-col gap-10 text-white relative z-10">
+          <h1 className="uppercase tracking-widest font-semibold text-5xl max-w-screen-md text-center">
+            Find your new home with Fire Homes
+          </h1>
+          <Button asChild className="mx-auto p-8 text-lg gap-5">
+            <Link href="/property-search">
+              <SearchIcon /> Search Properties
+            </Link>
+          </Button>
+        </div>
+      </main>
     </>
 
   );

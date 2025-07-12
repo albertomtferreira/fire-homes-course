@@ -16,9 +16,10 @@ import { registerUserSchema } from "@/validation/registerUser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { registerUser } from "../actions";
+
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { registerUser } from "@/app/(auth)/register/actions";
 
 export default function RegisterForm() {
   const router = useRouter();

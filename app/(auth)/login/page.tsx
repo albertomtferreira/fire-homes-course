@@ -1,3 +1,5 @@
+"use client"
+import LoginForm from "@/components/login-form";
 import {
   Card,
   CardContent,
@@ -5,18 +7,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import LoginForm from "./components/login-form";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 //LOGIN PAGE
 export default function Login() {
+  const router = useRouter()
   return (
     <Card className="color-box bg-card">
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Login</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <LoginForm />
+        <LoginForm onSuccess={() => {
+          router.refresh()
+        }} />
       </CardContent>
       <CardFooter>
         <div className="text-sm">

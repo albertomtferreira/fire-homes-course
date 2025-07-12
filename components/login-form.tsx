@@ -16,7 +16,6 @@ import { useAuth } from "@/context/auth";
 import { passwordValidation } from "@/validation/passwordValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -26,8 +25,9 @@ const formSchema = z.object({
   password: passwordValidation,
 });
 
-export default function LoginForm() {
-  const router = useRouter();
+export default function LoginForm(
+  { onSuccess }: { onSuccess?: () => void }
+) {
   const auth = useAuth();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,7 +40,7 @@ export default function LoginForm() {
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       await auth?.loginWithEmail(data.email, data.password);
-      router.refresh()
+      onSuccess?.()
     } catch (error: any) {
       toast.error("Error!", {
         description:

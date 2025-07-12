@@ -1,7 +1,8 @@
 //Register Page
 
+import RegisterForm from "@/components/register-form";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import RegisterForm from "./components/register-form";
+
 import Link from "next/link";
 
 export default function Register() {
@@ -11,7 +12,7 @@ export default function Register() {
         <CardTitle className="text-3xl font-bold">Register</CardTitle>
       </CardHeader>
       <CardContent>
-        <RegisterForm/>
+        <RegisterForm />
       </CardContent>
       <CardFooter>
         <div className="text-sm">

@@ -6,6 +6,19 @@ import { propertyDataSchema } from "@/validation/propertySchema";
 import { revalidatePath } from "next/cache";
 
 
+export const deleteProperty = async (propertyId: string, token: string) => {
+  const verifiedToken = await auth.verifyIdToken(token);
+
+  if (!verifiedToken.admin) {
+    return {
+      error: true,
+      message: "Unauthorized"
+    }
+  }
+
+  await firestore.collection("properties").doc(propertyId).delete()
+}
+
 export const updateProperty = async (data: Property, authToken: string) => {
   const { id, ...propertyData } = data
   const verifiedToken = await auth.verifyIdToken(authToken);

@@ -4,7 +4,7 @@ import BackButton from "../components/back-button"
 import CarouselAutoplay from "../components/carousel-autoplay"
 import PropertyDetails from "../components/property-details"
 
-
+export const dynamic = "force-static"
 
 export default async function Property({ params }: { params: Promise<any> }) {
   // Read the params from the browser address

@@ -10,6 +10,7 @@ import numeral from "numeral";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ToggleFavouriteButton from "./components/toggle-favourite-button";
+import { getUserFavourites } from "@/data/favourites";
 
 export default async function PropertySearch({
   searchParams
@@ -42,6 +43,7 @@ export default async function PropertySearch({
     }
   })
 
+  const userFavourites = await getUserFavourites()
 
   return (
     <div className=" max-w-screen-lg mx-auto">
@@ -74,7 +76,9 @@ export default async function PropertySearch({
               <PropertyCard key={property.id} className="h-full flex flex-col">
                 <PropertyCardContent className="flex flex-col h-full">
                   <PropertyCardImage className="h-40 bg-sky-50 text-zinc-400 flex flex-col justify-center items-center">
-                    <ToggleFavouriteButton />
+                    <ToggleFavouriteButton
+                      isFavourite={userFavourites[property.id]}
+                      propertyId={property.id} />
                     {!!property.images?.[0] && (
                       <Image
                         fill

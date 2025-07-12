@@ -66,14 +66,26 @@ export const getPropertyById = async (propertyId: string) => {
 }
 
 export const getPropertiesById = async (propertyIds: string[]) => {
-  const propertiesSnapshot = await
-    firestore
+  // Check if propertyIds array is empty
+  if (!propertyIds || propertyIds.length === 0) {
+    console.log("No property IDs provided, returning empty array");
+    return [];
+  }
+
+  try {
+    const propertiesSnapshot = await firestore
       .collection("properties")
       .where("__name__", "in", propertyIds)
-      .get()
-  const propertiesData = propertiesSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  } as Property))
-  return propertiesData
+      .get();
+    const propertiesData = propertiesSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    } as Property))
+    return propertiesData
+  } catch (error) {
+    console.log("Error fetching properties", error)
+    throw error
+  }
+
+
 }

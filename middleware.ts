@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { decodeJwt } from "jose";
-import { toast } from "sonner";
 
 export async function middleware(request: NextRequest) {
 

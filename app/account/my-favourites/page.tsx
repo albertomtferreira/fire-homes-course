@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/table";
 import { getUserFavourites } from "@/data/favourites";
 import { getPropertiesById } from "@/data/properties";
-import { EyeIcon, Trash2Icon } from "lucide-react";
+import { EyeIcon } from "lucide-react";
 import Link from "next/link";
-// import RemoveFavouriteButton from "./remove-favourite-button";
+
 import { redirect } from "next/navigation";
+import RemoveFavouriteButton from "./components/remove-favourite-button";
 
 export default async function MyFavourites({
   searchParams,
@@ -35,6 +36,9 @@ export default async function MyFavourites({
 
   if (!paginatedFavourites.length && page > 1) {
     redirect(`/account/my-favourites?page=${totalPages}`);
+  }
+  if (!paginatedFavourites.length && page < 1) {
+    redirect(`/account/my-favourites?page=1`);
   }
 
   const properties = await getPropertiesById(paginatedFavourites);
@@ -87,7 +91,7 @@ export default async function MyFavourites({
                             <EyeIcon />
                           </Link>
                         </Button>
-                        {/* <RemoveFavouriteButton propertyId={property.id} /> */}
+                        <RemoveFavouriteButton propertyId={property.id} />
                       </>
                     )}
                   </TableCell>

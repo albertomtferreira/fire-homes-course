@@ -67,16 +67,17 @@ export default function DeleteAccountButton() {
             Are you sure you want to delete your account?
           </AlertDialogTitle>
           <AlertDialogDescription asChild>
-            <div>
+            <div className="flex flex-col gap-4">
               This action cannot be undone. This will permanently delete your
               account and remove all your data from our servers.
-              <div>
+              <div className="flex flex-col gap-4">
                 <Label>Enter current password to continue</Label>
                 <Input
                   value={password}
                   className="input-style"
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
+                  placeholder="Your password here"
                 />
               </div>
             </div>
@@ -84,9 +85,9 @@ export default function DeleteAccountButton() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDeleteClick} disabled={isDeleting}>
+          <Button onClick={handleDeleteClick} disabled={isDeleting} variant="destructive">
             {isDeleting ? "Deleting..." : "Delete Account"}
-          </AlertDialogAction>
+          </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

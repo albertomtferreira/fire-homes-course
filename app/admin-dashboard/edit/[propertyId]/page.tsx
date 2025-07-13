@@ -7,7 +7,6 @@ import DeletePropertyButton from "./components/delete-property-button"
 export default async function EditProperty({ params }: { params: Promise<any> }) {
   // Read the params from the browser address
   const paramsValue = await params
-
   // Call the function to grab the property details
   const property = await getPropertyById(paramsValue.propertyId)
 

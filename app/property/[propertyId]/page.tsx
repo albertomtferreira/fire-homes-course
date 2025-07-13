@@ -7,6 +7,7 @@ import PropertyDetails from "../components/property-details"
 export const dynamic = "force-static"
 
 export default async function Property({ params }: { params: Promise<any> }) {
+
   // Read the params from the browser address
   const paramsValue = await params
 

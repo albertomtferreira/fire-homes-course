@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/auth";
 import AuthButtons from "@/components/auth-buttons";
 import { HomeIcon } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
           </nav>
           {children}
           <Toaster richColors closeButton />
+          <SpeedInsights />
         </AuthProvider>
       </body>
     </html>

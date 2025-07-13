@@ -70,6 +70,8 @@ export default function NewPropertyForm() {
           <>
             <PlusCircleIcon /> Create Property
           </>
-        } /> </div>
+        }
+        />
+      </div>
   )
 }

@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
-      <ErrorHandlerToast />
+      <Suspense fallback={null}>
+        <ErrorHandlerToast />
+      </Suspense>
       <main className="min-h-screen -mt-24 relative p-24 flex items-center justify-center">
         <Image fill className="object-cover" src="/hero.webp" alt="" />
         <div className="absolute top-0 left-0 size-full bg-black/50 backdrop-blur-sm" />
@@ -25,6 +26,5 @@ export default function Home() {
         </div>
       </main>
     </>
-
   );
 }

@@ -74,6 +74,7 @@ export default function DeleteAccountButton() {
                 <Label>Enter current password to continue</Label>
                 <Input
                   value={password}
+                  className="input-style"
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                 />

@@ -93,6 +93,7 @@ export default function UpdatePasswordForm() {
                       {...field}
                       placeholder="Current Password"
                       type="password"
+                      className="input-style"
                     />
                   </FormControl>
                   <FormMessage />
@@ -110,6 +111,7 @@ export default function UpdatePasswordForm() {
                       {...field}
                       placeholder="New Password"
                       type="password"
+                      className="input-style"
                     />
                   </FormControl>
                   <FormMessage />
@@ -127,6 +129,7 @@ export default function UpdatePasswordForm() {
                       {...field}
                       placeholder="Confirm New Password"
                       type="password"
+                      className="input-style"
                     />
                   </FormControl>
                   <FormMessage />

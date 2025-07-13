@@ -73,7 +73,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Address Line 1</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,7 +83,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Address Line 2</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,7 +93,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>City</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,7 +103,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Post Code</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -115,7 +115,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input {...field} type="number" />
+                  <Input {...field} type="number" className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,7 +125,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Bedrooms</FormLabel>
                 <FormControl>
-                  <Input {...field} type="number" />
+                  <Input {...field} type="number" className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -135,7 +135,7 @@ export default function PropertyForm({
               <FormItem>
                 <FormLabel>Bathrooms</FormLabel>
                 <FormControl>
-                  <Input {...field} type="number" />
+                  <Input {...field} type="number" className="input-style" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

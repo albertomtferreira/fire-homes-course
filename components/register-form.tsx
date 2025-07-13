@@ -65,7 +65,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Your Name</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Your Name" />
+                    <Input {...field} placeholder="Your Name" className="input-style" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,7 +80,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Your Email" />
+                    <Input {...field} placeholder="Your Email" className="input-style" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -95,7 +95,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Password" type="password" />
+                    <Input {...field} placeholder="Password" type="password" className="input-style" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -114,6 +114,7 @@ export default function RegisterForm() {
                       {...field}
                       placeholder="Confirm Password"
                       type="password"
+                      className="input-style"
                     />
                   </FormControl>
                   <FormMessage />

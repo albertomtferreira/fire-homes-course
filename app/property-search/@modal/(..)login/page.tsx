@@ -7,6 +7,7 @@ import { loginSuccess } from "./actions";
 
 
 export default function LoginModal() {
+
   const router = useRouter()
   return (
     <Dialog

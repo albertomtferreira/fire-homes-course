@@ -15,8 +15,6 @@ export default function ContinueWithGithubButton() {
       onClick={async () => {
         try {
           await auth?.loginWithGithub();
-          // BUG - Router refresh not working
-          router.refresh();
         } catch (e) { }
       }}
       className="w-full"

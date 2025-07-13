@@ -21,8 +21,6 @@ export default async function PropertiesTable({ page = 1 }: { page?: number }) {
       {!!data &&
         <Table className="mt-5">
           <TableHeader>
-            {/* TODO -  organise by address / listing price / status*/}
-            {/* TODO - Create filters: price range - status */}
             <TableRow>
               <TableHead>Address</TableHead>
               <TableHead>Listing Price</TableHead>
@@ -63,7 +61,6 @@ export default async function PropertiesTable({ page = 1 }: { page?: number }) {
           </TableBody>
           <TableFooter>
             <TableRow>
-              {/* TODO - Dropdown box for user to select number of properties per page [5-10-20-40]*/}
               <TableCell colSpan={4} className="text-center">
                 {Array.from({ length: totalPages }).map((_, i) => (
                   <Button

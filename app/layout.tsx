@@ -30,8 +30,6 @@ export default function RootLayout({
         className={`${poppins.className} antialiased`}
       >
         <AuthProvider>
-          {/* TODO - Make the navbar sticky */}
-          {/* NOTE - Be aware of behavior of Property View Page as the sticky property snapshot will go over */}
           <nav className="bg-accent p-5 h-24 flex items-center justify-between z-10 relative">
             <Link href="/" className="text-3xl tracking-widest flex gap-2 items-center uppercase">
               <HomeIcon />

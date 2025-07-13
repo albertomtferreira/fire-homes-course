@@ -37,14 +37,14 @@ export default function AuthButtons() {
               <div className="font-normal">{auth.currentUser.email}</div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {/* TODO - Implement My Account Page */}
+
             <DropdownMenuItem asChild>
               <Link href="/account">
                 <FaUser />
                 My Account
               </Link>
             </DropdownMenuItem>
-            {/* TODO - Implement Admin Dashboard Page */}
+
             {!!auth.customClaims?.admin && (
               <DropdownMenuItem asChild>
                 <Link href="/admin-dashboard">
@@ -54,7 +54,7 @@ export default function AuthButtons() {
               </DropdownMenuItem>
             )}
 
-            {/* TODO - Implement My Favourites Page */}
+
             {!auth.customClaims?.admin && (
               <DropdownMenuItem asChild>
                 <Link href="/account/my-favourites">

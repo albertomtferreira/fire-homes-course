@@ -15,7 +15,7 @@ export default function ToggleFavouriteButton(
 
   return (
     <button
-      className="absolute top-0 right-0 z-10 p-2 bg-white opacity-85 rounded-bl-lg"
+      className="absolute top-0 right-0 z-10 p-2 bg-white opacity-90 rounded-bl-lg"
       onClick={async () => {
         const tokenResult = await auth?.currentUser?.getIdTokenResult();
         if (!tokenResult) {

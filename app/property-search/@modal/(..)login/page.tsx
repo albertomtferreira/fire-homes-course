@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { loginSuccess } from "./actions";
 
 
-export default async function LoginModal() {
+export default function LoginModal() {
 
   const router = useRouter()
   return (

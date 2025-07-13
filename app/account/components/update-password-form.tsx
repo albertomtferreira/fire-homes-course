@@ -65,7 +65,6 @@ export default function UpdatePasswordForm() {
       toast.success("Password updated successfully");
       form.reset();
     } catch (e: any) {
-      console.log({ e });
       toast(
         e.code === "auth/invalid-credential"
           ? "Your current password is incorrect"

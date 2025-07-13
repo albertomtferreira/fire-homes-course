@@ -25,7 +25,6 @@ export default function MultiImageUploader({
   urlFormatter
 }: Props) {
   const uploadInputRef = useRef<HTMLInputElement | null>(null)
-  console.log({ images })
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
     const newImages = files.map((file, index) => {

@@ -68,7 +68,6 @@ export const getPropertyById = async (propertyId: string) => {
 export const getPropertiesById = async (propertyIds: string[]) => {
   // Check if propertyIds array is empty
   if (!propertyIds || propertyIds.length === 0) {
-    console.log("No property IDs provided, returning empty array");
     return [];
   }
 
@@ -83,7 +82,6 @@ export const getPropertiesById = async (propertyIds: string[]) => {
     } as Property))
     return propertiesData
   } catch (error) {
-    console.log("Error fetching properties", error)
     throw error
   }
 

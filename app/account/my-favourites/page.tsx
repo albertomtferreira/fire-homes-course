@@ -42,7 +42,6 @@ export default async function MyFavourites({
   }
 
   const properties = await getPropertiesById(paginatedFavourites);
-  console.log({ paginatedFavourites, properties });
 
   return (
     <div className="max-w-screen-lg mx-auto">

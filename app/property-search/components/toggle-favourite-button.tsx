@@ -6,10 +6,7 @@ import { useAuth } from "@/context/auth"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
-export default function ToggleFavouriteButton(
-  { propertyId, isFavourite }
-    :
-    { propertyId: string, isFavourite: boolean }) {
+export default function ToggleFavouriteButton({ propertyId, isFavourite }: { propertyId: string, isFavourite: boolean }) {
   const auth = useAuth()
   const router = useRouter()
 

@@ -8,7 +8,8 @@ import {
   signInWithPopup,
   User,
 } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { removeToken, setToken } from "./actions";
 
 type AuthContextType = {
@@ -23,6 +24,8 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter()
+  const initialLoad = useRef(true)
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [customClaims, setCustomClaims] = useState<ParsedToken | null>(null);
 
@@ -41,9 +44,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       } else {
         await removeToken();
       }
+      if (!initialLoad.current) {
+        router.refresh();
+      }
+      initialLoad.current = false;
     });
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const logout = async () => {
     await auth.signOut();

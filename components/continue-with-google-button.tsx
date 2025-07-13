@@ -13,8 +13,6 @@ export default function ContinueWithGoogleButton() {
       onClick={async () => {
         try {
           await auth?.loginWithGoogle();
-          // BUG - Router refresh not working
-          router.refresh();
         } catch (e) { }
       }}
       className="w-full"

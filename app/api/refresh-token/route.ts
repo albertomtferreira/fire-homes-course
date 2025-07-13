@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest) => {
         return NextResponse.redirect(new URL("/", request.url));
     }
 
-    const cookieStore = await cookies();
+    const cookieStore = cookies();
     const refreshToken = cookieStore.get("firebaseAuthRefreshToken")?.value;
 
     if (!refreshToken) {

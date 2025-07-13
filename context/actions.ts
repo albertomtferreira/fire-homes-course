@@ -4,7 +4,7 @@ import { auth } from "@/firebase/server";
 import { cookies } from "next/headers";
 
 export const removeToken = async () => {
-  const cookieStore = await cookies()
+  const cookieStore = cookies()
   cookieStore.delete("firebaseAuthToken")
   cookieStore.delete("firebaseAuthRefreshToken")
 }
@@ -27,7 +27,7 @@ export const setToken = async ({
         admin: true
       })
     }
-    const cookieStore = await cookies();
+    const cookieStore = cookies();
     cookieStore.set("firebaseAuthToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production"

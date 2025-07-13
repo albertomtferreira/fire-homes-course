@@ -3,7 +3,7 @@ import { cookies } from "next/headers"
 import "server-only"
 
 export const getUserFavourites = async () => {
-  const cookiesStore = await cookies()
+  const cookiesStore = cookies()
   const token = cookiesStore.get("firebaseAuthToken")?.value
 
   if (!token) {

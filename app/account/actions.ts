@@ -4,7 +4,7 @@ import { auth, firestore } from "@/firebase/server";
 import { cookies } from "next/headers";
 
 export const deleteUserFavourites = async () => {
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
   if (!token) {

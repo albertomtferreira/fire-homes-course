@@ -47,7 +47,7 @@ export default async function PropertySearch({
   })
 
   const userFavourites = await getUserFavourites()
-  const cookieStore = await cookies()
+  const cookieStore = cookies()
   const token = cookieStore.get("firebaseAuthToken")?.value
   let verifiedToken: DecodedIdToken | null
 

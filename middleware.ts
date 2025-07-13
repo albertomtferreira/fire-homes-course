@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
   const { pathname } = request.nextUrl;

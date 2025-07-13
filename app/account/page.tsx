@@ -8,7 +8,7 @@ import UpdatePasswordForm from "./components/update-password-form";
 import DeleteAccountButton from "./components/delete-account-button";
 
 export default async function Account() {
-  const cookieStore = await cookies()
+  const cookieStore = cookies()
   const token = cookieStore.get("firebaseAuthToken")?.value
 
   if (!token) {

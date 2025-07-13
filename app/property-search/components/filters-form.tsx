@@ -58,6 +58,7 @@ export default function FiltersForm() {
                 placeholder="Min Price"
                 type="number"
                 min={0}
+                className="input-style"
               />
             </FormControl>
           </FormItem>
@@ -73,6 +74,7 @@ export default function FiltersForm() {
                 placeholder="Max Price"
                 type="number"
                 min={0}
+                className="input-style"
               />
             </FormControl>
           </FormItem>
@@ -88,6 +90,7 @@ export default function FiltersForm() {
                 placeholder="Min Bedrooms"
                 type="number"
                 min={0}
+                className="input-style"
               />
             </FormControl>
           </FormItem>

@@ -20,7 +20,7 @@ export default function ForgotPasswordForm() {
       className="flex flex-col gap-4">
       <Input
         type="email"
-        className="bg-white"
+        className="input-style"
         placeholder="Your email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}

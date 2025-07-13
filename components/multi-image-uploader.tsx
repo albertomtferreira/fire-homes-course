@@ -56,7 +56,7 @@ export default function MultiImageUploader({
   return (
     <div className="w-full max-w-3xl mx-auto p-4">
       <input
-        className="hidden"
+        className="hidden input-style"
         ref={uploadInputRef}
         type="file"
         multiple accept="image/*"

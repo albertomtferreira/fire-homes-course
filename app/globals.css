@@ -215,3 +215,7 @@
 .property-description ol {
   @apply list-decimal my-4 ml-4;
 }
+
+.input-style{
+  @apply bg-white
+}

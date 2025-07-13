@@ -11,10 +11,10 @@ export default function ForgotPassword() {
         <CardDescription>
           Enter your email address below and you will receive a link to reset your password
         </CardDescription>
-        <CardContent>
-          <ForgotPasswordForm />
-        </CardContent>
       </CardHeader>
+      <CardContent>
+        <ForgotPasswordForm />
+      </CardContent>
     </Card>
   )
 }

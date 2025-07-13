@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ForgotPasswordForm from "./component/forgot-password-form";
 
-export default function () {
+export default function ForgotPassword() {
   return (
     <Card className="color-box bg-card">
       <CardHeader>

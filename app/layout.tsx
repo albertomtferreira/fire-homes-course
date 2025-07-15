@@ -82,9 +82,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification
-    // yandex: 'your-yandex-verification-code',
-    // yahoo: 'your-yahoo-verification-code',
+    google: 'hx48tYQVC95X2l_hMNfdwkvaURJNkS7yr_dwHPwhpFk',
   },
 };
 

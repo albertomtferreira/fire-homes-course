@@ -61,7 +61,7 @@ export default async function MyFavourites({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedFavourites.map((favourite) => {
+            {paginatedFavourites.map((favourite, i) => {
               const property = properties.find(
                 (property) => property.id === favourite
               );

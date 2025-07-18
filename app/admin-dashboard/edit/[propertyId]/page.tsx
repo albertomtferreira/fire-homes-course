@@ -3,6 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getPropertyById } from "@/data/properties"
 import EditPropertyForm from "./edit-property-form"
 import DeletePropertyButton from "./components/delete-property-button"
+import { generateMetadata } from "@/data/metadata"
+
+
+// Export metadata from server component
+export const metadata = generateMetadata("editProperty");
+
+
 
 export default async function EditProperty({ params }: { params: Promise<any> }) {
   // Read the params from the browser address

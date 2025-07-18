@@ -6,6 +6,11 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation";
 import UpdatePasswordForm from "./components/update-password-form";
 import DeleteAccountButton from "./components/delete-account-button";
+import { Metadata } from "next";
+import { generateMetadata } from "@/data/metadata";
+
+// Export metadata from server component
+export const metadata = generateMetadata("account");
 
 export default async function Account() {
   const cookieStore = await cookies()

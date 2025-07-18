@@ -16,6 +16,11 @@ import Link from "next/link";
 
 import { redirect } from "next/navigation";
 import RemoveFavouriteButton from "./components/remove-favourite-button";
+import { generateMetadata } from "@/data/metadata";
+
+// Export metadata from server component
+export const metadata = generateMetadata("myFavourites");
+
 
 export default async function MyFavourites({
   searchParams,

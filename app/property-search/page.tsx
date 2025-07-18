@@ -14,6 +14,11 @@ import { getUserFavourites } from "@/data/favourites";
 import { cookies } from "next/headers";
 import { auth } from "@/firebase/server";
 import { DecodedIdToken } from "firebase-admin/auth";
+import { generateMetadata } from "@/data/metadata";
+
+
+// Export metadata from server component
+export const metadata = generateMetadata("propertySearch");
 
 export default async function PropertySearch({
   searchParams

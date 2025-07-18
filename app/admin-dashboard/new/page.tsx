@@ -1,6 +1,13 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NewPropertyForm from "./new-property-form";
+import { generateMetadata } from "@/data/metadata";
+
+
+
+// Export metadata from server component
+export const metadata = generateMetadata("newProperty");
+
 
 export default function NewProperty() {
   return (

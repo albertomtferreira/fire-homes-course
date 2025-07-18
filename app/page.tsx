@@ -4,6 +4,10 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import { generateMetadata } from "@/data/metadata";
+
+// Export metadata from server component
+export const metadata = generateMetadata("home");
 
 export default function Home() {
   return (

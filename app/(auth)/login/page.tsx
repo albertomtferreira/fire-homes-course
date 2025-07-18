@@ -1,38 +1,12 @@
-"use client"
-import LoginForm from "@/components/login-form";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+// app/(auth)/login/page.tsx (Server Component - handles metadata)
+import { generateMetadata } from "@/data/metadata";
+import LoginClient from "./components/login-client";
 
 
-//LOGIN PAGE
-export default function Login() {
-  const router = useRouter()
-  return (
-    <Card className="color-box bg-card">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold">Login</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <LoginForm onSuccess={() => {
-          router.refresh()
-        }} />
-      </CardContent>
-      <CardFooter>
-        <div className="text-sm">
-          Don&apos;t have an account?
-          <Link href="/register" className="pl-2 underline font-semibold">
-            Register Here!
-          </Link>
-        </div>
-      </CardFooter>
-    </Card>
-  );
+// Export metadata from server component
+export const metadata = generateMetadata("login");
+
+// Server component renders client component
+export default function LoginPage() {
+  return <LoginClient />;
 }

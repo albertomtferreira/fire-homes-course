@@ -3,6 +3,10 @@ import { Button } from "@/components/ui/button";
 import { PlusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import PropertiesTable from "./properties-table";
+import { generateMetadata } from "@/data/metadata";
+
+// Export metadata from server component
+export const metadata = generateMetadata("adminDashboard");
 
 export default async function AdminDashboard({
   searchParams

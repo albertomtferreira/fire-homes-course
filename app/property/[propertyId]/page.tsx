@@ -4,6 +4,7 @@ import BackButton from "../components/back-button"
 import CarouselAutoplay from "../components/carousel-autoplay"
 import PropertyDetails from "../components/property-details"
 import { generateMetadata } from "@/data/metadata"
+import EditPropertyButton from "../../../components/editPropertyButton"
 
 export const dynamic = "force-static"
 
@@ -25,6 +26,8 @@ export default async function Property({ params }: { params: Promise<any> }) {
     property.postcode,
   ].filter((addressLine): addressLine is string => !!addressLine);
 
+
+
   return (
     <div className="grid grid-cols-[1fr_500px]">
       <div>
@@ -32,7 +35,12 @@ export default async function Property({ params }: { params: Promise<any> }) {
         <CarouselAutoplay images={property.images} />
         <div className="property-description max-w-screen-md mx-auto py-10 px-4">
           {/* Call for Back Button */}
-          <BackButton />
+          <div className="flex justify-between">
+            <BackButton />
+            <EditPropertyButton propertyId={property.id} />
+
+          </div>
+
           <ReactMarkdown>
             {
               property.description

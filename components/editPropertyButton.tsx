@@ -4,7 +4,7 @@ import { useIsAdmin } from "@/helpers/helperFunctionsClient";
 import { PencilIcon } from "lucide-react";
 import Link from "next/link";
 
-export default async function EditPropertyButton({ propertyId }: { propertyId: string }) {
+export default function EditPropertyButton({ propertyId }: { propertyId: string }) {
   const isAdmin = useIsAdmin()
 
   console.log("PROPERTY ID:   ", propertyId)

@@ -2,18 +2,21 @@
 import { useAuth } from "@/context/auth"
 import { Button } from "./ui/button"
 import { SiGoogle } from "react-icons/si"
-import { useRouter } from "next/navigation"
 
 export default function ContinueWithGoogleButton() {
   const auth = useAuth()
-  const router = useRouter()
+
   return (
     <Button
       variant="outline"
       onClick={async () => {
         try {
-          await auth?.loginWithGoogle();
-        } catch (e) { }
+          // Force account selection by passing prompt parameter
+          const options = { prompt: 'select_account' };
+          await auth?.loginWithGoogle(options);
+        } catch (e) {
+          console.error('Google login error:', e);
+        }
       }}
       className="w-full"
     >
@@ -22,4 +25,3 @@ export default function ContinueWithGoogleButton() {
     </Button>
   );
 }
-

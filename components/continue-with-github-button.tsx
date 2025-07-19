@@ -1,14 +1,11 @@
 "use client"
 import { useAuth } from "@/context/auth";
 import { Button } from "./ui/button"
-
-
 import { FaGithub } from "react-icons/fa";
-import { useRouter } from "next/navigation";
 
 export default function ContinueWithGithubButton() {
   const auth = useAuth()
-  const router = useRouter()
+
   return (
     <Button
       variant="outline"

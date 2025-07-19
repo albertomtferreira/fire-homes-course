@@ -7,16 +7,18 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   User,
+  UserCredential,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { removeToken, setToken } from "./actions";
+import { toast } from "sonner";
 
 type AuthContextType = {
   currentUser: User | null;
   logout: () => Promise<void>;
-  loginWithGithub: () => Promise<void>;
-  loginWithGoogle: () => Promise<void>;
+  loginWithGithub: () => Promise<UserCredential | void>;
+  loginWithGoogle: (options?: { prompt?: string }) => Promise<UserCredential>;
   customClaims: ParsedToken | null;
   loginWithEmail: (email: string, password: string) => Promise<void>;
 };
@@ -56,14 +58,46 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await auth.signOut();
   };
 
-  const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+  const loginWithGoogle = async (options?: { prompt?: string }) => {
+    const googleProvider = new GoogleAuthProvider();
+
+
+    // Set custom parameters if provided
+    if (options?.prompt) {
+      googleProvider.setCustomParameters({
+        prompt: options.prompt
+      });
+
+    } else {
+      // Optionally, you can force select_account as default
+      googleProvider.setCustomParameters({
+        prompt: 'select_account'
+      });
+    }
+
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      return result;
+    } catch (error) {
+      console.error("Google login error:", error);
+      throw error;
+    }
   };
 
   const loginWithGithub = async () => {
     const githubProvider = new GithubAuthProvider();
-    await signInWithPopup(auth, githubProvider);
+    try {
+      const result = await signInWithPopup(auth, githubProvider);
+      return result
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+
+      toast.error("Error!", {
+        description: `${errorMessage === "Firebase: Error (auth/account-exists-with-different-credential)."
+          ? "The email address is already in use by another account"
+          : errorMessage}`
+      });
+    }
   };
 
   const loginWithEmail = async (email: string, password: string) => {

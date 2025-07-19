@@ -46,7 +46,7 @@ export default function LoginForm(
         description:
           error.code === "auth/invalid-credential"
             ? "Invalid Credentials"
-            : `"An error occurred during login "${error.code}`,
+            : `An error occurred during login ${error.code}`,
       });
     }
   };

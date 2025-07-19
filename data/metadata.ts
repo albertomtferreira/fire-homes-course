@@ -58,7 +58,7 @@ export const pageMetadata = {
   ,
   myFavourites: {
     title: "My-Favourites",
-    description: "Manage your favourite profiles"
+    description: "Manage your favourite properties"
   }
 } as const;
 

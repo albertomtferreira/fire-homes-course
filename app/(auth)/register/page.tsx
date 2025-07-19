@@ -1,4 +1,4 @@
-// app/(auth)/login/page.tsx (Server Component - handles metadata)
+// app/(auth)/register/page.tsx (Server Component - handles metadata)
 import { generateMetadata } from "@/data/metadata";
 import RegisterClient from "./components/register-client";
 
@@ -8,6 +8,6 @@ import RegisterClient from "./components/register-client";
 export const metadata = generateMetadata("register");
 
 // Server component renders client component
-export default function LoginPage() {
+export default function RegisterPage() {
   return <RegisterClient />;
 }

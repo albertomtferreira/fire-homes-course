@@ -29,6 +29,7 @@ export default async function Account() {
   }
 
   const user = await auth.getUser(decodedToken.uid);
+
   const isPasswordProvider = !!user.providerData.find(
     (provider) => provider.providerId === "password"
   );
@@ -44,14 +45,12 @@ export default async function Account() {
           <div>{decodedToken.email}</div>
           {!!isPasswordProvider && <UpdatePasswordForm />}
         </CardContent>
-        {!decodedToken.admin && (
-          <CardFooter className="flex flex-col items-start">
-            <h2 className="text-red-500 text-2xl font-bold mb-2">
-              Danger Zone
-            </h2>
-            <DeleteAccountButton />
-          </CardFooter>
-        )}
+        <CardFooter className="flex flex-col items-start">
+          <h2 className="text-red-500 text-2xl font-bold mb-2">
+            Danger Zone
+          </h2>
+          <DeleteAccountButton isAdmin={decodedToken.admin} />
+        </CardFooter>
       </Card>
     </div>
   )

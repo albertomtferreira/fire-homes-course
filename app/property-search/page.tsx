@@ -4,7 +4,7 @@ import FiltersForm from "./components/filters-form"
 import { Suspense } from "react"
 import { getProperties } from "@/data/properties";
 import Image from "next/image";
-import imageUrlFormatter from "@/lib/imageUrlFormatter";
+import { imageUrlFormatter } from "@/lib/imageUrlFormatter";
 import { BathIcon, BedIcon, HomeIcon } from "lucide-react";
 import numeral from "numeral";
 import { Button } from "@/components/ui/button";

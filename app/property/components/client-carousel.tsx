@@ -11,7 +11,8 @@ import {
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
 import { useEffect, useState } from "react"
-import imageUrlFormatter from "@/lib/imageUrlFormatter"
+import { imageUrlFormatter } from "@/lib/imageUrlFormatter"
+
 
 interface ClientCarouselProps {
   images: string[]
